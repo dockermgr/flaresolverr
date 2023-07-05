@@ -12,8 +12,8 @@
 # @@Description      :  Container installer script for flaresolverr
 # @@Changelog        :  New script
 # @@TODO             :  Completely rewrite/refactor/variable cleanup
-# @@Other            :  
-# @@Resource         :  
+# @@Other            :
+# @@Resource         :
 # @@Terminal App     :  no
 # @@sudo/root        :  no
 # @@Template         :  installers/dockermgr
@@ -331,7 +331,7 @@ CONTAINER_WEB_SERVER_VHOSTS=""
 CONTAINER_ADD_RANDOM_PORTS=""
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Add custom port -  [exter:inter] or [listen:exter:inter/[tcp,udp]] random:[inter]
-CONTAINER_ADD_CUSTOM_PORT=""
+CONTAINER_ADD_CUSTOM_PORT="0.0.0.0:8191:8191"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # mail settings - [yes/no] [user] [domainname] [server]
 CONTAINER_EMAIL_ENABLED=""
@@ -458,6 +458,7 @@ DOCKERMGR_ENABLE_INSTALL_SCRIPT="yes"
 # Set custom container enviroment variables - [MYVAR="VAR"]
 __custom_docker_env() {
   cat <<EOF | tee | grep -v '^$'
+LOG_LEVEL=info
 
 EOF
 }
