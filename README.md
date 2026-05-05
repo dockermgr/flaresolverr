@@ -21,17 +21,17 @@ dockermgr update flaresolverr
 ## Install and run container
   
 ```shell
-mkdir -p "$HOME/.local/share/srv/docker/flaresolverr/rootfs"
+mkdir -p "$HOME/.local/share/srv/docker/flaresolverr/volumes"
 git clone "https://github.com/dockermgr/flaresolverr" "$HOME/.local/share/CasjaysDev/dockermgr/flaresolverr"
-cp -Rfva "$HOME/.local/share/CasjaysDev/dockermgr/flaresolverr/rootfs/." "$HOME/.local/share/srv/docker/flaresolverr/rootfs/"
+cp -Rfva "$HOME/.local/share/CasjaysDev/dockermgr/flaresolverr/volumes/." "$HOME/.local/share/srv/docker/flaresolverr/volumes/"
 docker run -d \
 --restart always \
 --privileged \
 --name casjaysdevdocker-flaresolverr \
 --hostname flaresolverr \
 -e TZ=${TIMEZONE:-America/New_York} \
--v $HOME/.local/share/srv/docker/casjaysdevdocker-flaresolverr/rootfs/data:/data:z \
--v $HOME/.local/share/srv/docker/casjaysdevdocker-flaresolverr/rootfs/config:/config:z \
+-v $HOME/.local/share/srv/docker/casjaysdevdocker-flaresolverr/volumes/data:/data:z \
+-v $HOME/.local/share/srv/docker/casjaysdevdocker-flaresolverr/volumes/config:/config:z \
 -p 0.0.0.0:8191:8191 \
 casjaysdevdocker/flaresolverr:latest
 ```
@@ -48,8 +48,8 @@ services:
       - TZ=America/New_York
       - HOSTNAME=flaresolverr
     volumes:
-      - $HOME/.local/share/srv/docker/casjaysdevdocker-flaresolverr/rootfs/data:/data:z
-      - $HOME/.local/share/srv/docker/casjaysdevdocker-flaresolverr/rootfs/config:/config:z
+      - $HOME/.local/share/srv/docker/casjaysdevdocker-flaresolverr/volumes/data:/data:z
+      - $HOME/.local/share/srv/docker/casjaysdevdocker-flaresolverr/volumes/config:/config:z
     ports:
       - 0.0.0.0:8191:8191
     restart: always
